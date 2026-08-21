@@ -37,6 +37,13 @@ html, body {
   gap: 10px;
 }
 
+/* Add styling specifically for the logo text span */
+.logo span {
+  font-size: 24px;
+  font-weight: 700; /* Makes Nexcent logo text bold */
+  color: #263238;
+}
+
 .logo-img {
   height: 32px;
   width: auto;
@@ -47,6 +54,7 @@ html, body {
 .nav-links span {
   margin: 0 1.2vw;
   font-size: 16px;
+  font-weight: 600;
   color: #18191F;
   cursor: pointer;
 }
