@@ -22,6 +22,11 @@ export default function AuthModal({ isOpen, onClose, initialMode = 'login' }) {
     e.preventDefault();
     setError('');
 
+    // Automatically uses local host if running locally, or ngrok backend URL if running via ngrok
+    const BACKEND_URL = window.location.hostname === 'localhost'
+      ? 'http://localhost:5000'
+      : 'https://backend-yyyy.ngrok-free.app'; // Replace with your active backend ngrok URL
+
     const endpoint = mode === 'signup' 
       ? 'http://localhost:5000/api/auth/signup' 
       : 'http://localhost:5000/api/auth/login';

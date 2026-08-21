@@ -21,6 +21,12 @@ const db = mysql.createPool({
 
 const JWT_SECRET = process.env.JWT_SECRET || 'nexcent_super_secret_key';
 
+// Allows requests from localhost:5173 and external ngrok domains
+app.use(cors({
+  origin: true,
+  credentials: true
+}));
+
 // User Registration / Sign Up Endpoint
 app.post('/api/auth/signup', async (req, res) => {
   const { name, email, password } = req.body;
