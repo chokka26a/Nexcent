@@ -12,6 +12,7 @@ import communityUpdatesImg from './assets/CommunityUpdates.png';
 
 // Import AuthContext hook
 import { useAuth } from './context/AuthContext'; 
+import AuthModal from './components/AuthModal';
 
 export default function App() {
   const { user, logout } = useAuth() || {}; 
@@ -101,50 +102,15 @@ export default function App() {
     
       {/* 4. Active Auth Modal Overlay */}
       {authMode && (
-        <div style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          width: '100vw',
-          height: '100vh',
-          backgroundColor: 'rgba(0,0,0,0.6)',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-          zIndex: 99999
-        }}>
-          <div style={{ 
-            background: '#ffffff', 
-            padding: '40px', 
-            borderRadius: '8px', 
-            textAlign: 'center',
-            minWidth: '320px',
-            boxShadow: '0 4px 20px rgba(0,0,0,0.2)' 
-          }}>
-            <h2 style={{ color: '#263238', marginBottom: '15px' }}>
-              {authMode === 'login' ? 'Welcome Back' : 'Create Account'}
-            </h2>
-            <p style={{ color: '#717171', marginBottom: '25px' }}>
-              {authMode === 'login' ? 'Sign in to access your dashboard' : 'Join Nexcent today'}
-            </p>
-            <button 
-              onClick={() => setAuthMode(null)} 
-              style={{ 
-                padding: '10px 24px', 
-                background: '#4CAF4F', 
-                color: '#ffffff', 
-                border: 'none', 
-                borderRadius: '4px', 
-                cursor: 'pointer',
-                fontWeight: '500'
-              }}
-            >
-              Close
-            </button>
-          </div>
-        </div>
+        <AuthModal 
+          isOpen={Boolean(authMode)} 
+          initialMode={authMode} 
+          onClose={() => setAuthMode(null)}
+        />
       )}
 
     </div>
   );
 }
+
+

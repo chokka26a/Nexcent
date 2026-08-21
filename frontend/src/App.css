@@ -4,26 +4,30 @@
   padding: 0;
 }
 
-body {
+html, body {
+  width: 100%;
+  overflow-x: hidden; /* Removes horizontal scrollbars across all screen sizes */
   font-family: 'Inter', sans-serif;
   color: #4D4D4D;
   background-color: #FFFFFF;
 }
 
+/* 1. Full-Width Container (Removes 1440px max-width boundary) */
 .landing-container {
   width: 100%;
-  max-width: 1440px;
-  margin: 0 auto;
+  margin: 0;
+  padding: 0;
 }
 
-/* Header Navigation - Fixed clickability with positioning and z-index */
+/* 2. Responsive Edge-to-Edge Header */
 .navbar {
   position: relative;
   z-index: 100;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 22px 120px;
+  width: 100%;
+  padding: 1.5rem 5vw; /* Converts fixed 120px padding to responsive viewport-width padding */
   background-color: #F5F7FA;
 }
 
@@ -34,14 +38,14 @@ body {
 }
 
 .logo-img {
-  height: 32px;      /* Prevents image from expanding the header */
-  width: auto;       /* Maintains correct aspect ratio */
+  height: 32px;
+  width: auto;
   object-fit: contain;
   display: block;
 }
 
 .nav-links span {
-  margin: 0 20px;
+  margin: 0 1.2vw;
   font-size: 16px;
   color: #18191F;
   cursor: pointer;
@@ -73,23 +77,13 @@ body {
   cursor: pointer !important;
 }
 
-/* Image Section Layouts */
+/* 3. Fluid Image Sections (Removes 1200px image limit) */
 .section-container {
   width: 100%;
-  padding: 40px 120px;
+  padding: 0; /* Ensures background fills entire screen without white side margins */
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.relative-container {
-  position: relative;
-}
-
-.image-overlay-btn {
-  position: absolute;
-  bottom: 20%;
-  z-index: 10;
 }
 
 .bg-light {
@@ -98,17 +92,18 @@ body {
 
 .full-width-img {
   width: 100%;
-  max-width: 1200px;
+  max-width: 100%; /* Allows image to stretch dynamically on 15", 20", or ultrawide screens */
   height: auto;
-  object-fit: contain;
+  object-fit: cover;
   display: block;
 }
 
-/* Bottom Call to Action */
+/* 4. Bottom Call to Action */
 .footer-cta {
   background-color: #F5F7FA;
   text-align: center;
   padding: 60px 20px;
+  width: 100%;
 }
 
 .footer-cta h2 {
@@ -117,32 +112,7 @@ body {
   margin-bottom: 30px;
 }
 
-/* Auth Modal Styling - Forces overlay above all images */
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-}
-
-/* Responsive Scaling */
-@media (max-width: 768px) {
-  .navbar, .section-container {
-    padding: 20px;
-  }
-
-  .nav-links {
-    display: none;
-  }
-}
-
-/* Force modal overlay to render above all section images */
+/* 5. Auth Modal Styling */
 div[class*="modal"], 
 div[class*="overlay"] {
   position: fixed !important;
@@ -155,4 +125,15 @@ div[class*="overlay"] {
   justify-content: center !important;
   align-items: center !important;
   z-index: 99999 !important;
+}
+
+/* Responsive Media Queries */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 15px 20px;
+  }
+
+  .nav-links {
+    display: none;
+  }
 }

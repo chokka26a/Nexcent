@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { AuthContext } from '../context/AuthContext';
 
 export default function AuthModal({ isOpen, onClose, initialMode = 'login' }) {
@@ -6,6 +6,11 @@ export default function AuthModal({ isOpen, onClose, initialMode = 'login' }) {
   const [formData, setFormData] = useState({ name: '', email: '', password: '' });
   const [error, setError] = useState('');
   const { login } = useContext(AuthContext);
+
+  // Sync mode state when initialMode prop changes
+  useEffect(() => {
+    setMode(initialMode);
+  }, [initialMode]);
 
   if (!isOpen) return null;
 
