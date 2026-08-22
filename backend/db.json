@@ -1,0 +1,20 @@
+{
+  "nexcent_db": {
+    "users": [
+      {
+        "id": 1787375366607,
+        "name": "test1",
+        "email": "test1@test.com",
+        "password": "$2b$10$aJ8vmGvk5F2h37gj4ZxbOOYDS/FGFTdnb4Ykil3meHwC8wyWzs0lC",
+        "created_dt": "2026-08-22T05:09:26.607Z"
+      },
+      {
+        "id": 1787375430951,
+        "name": "test2",
+        "email": "test2@test.com",
+        "password": "$2b$10$hqaimfN2hYoYTSJScxT/TeXoHUfont8ck3Hf8.ZmqWuERcYZuNZw2",
+        "created_dt": "2026-08-22T05:10:30.951Z"
+      }
+    ]
+  }
+}

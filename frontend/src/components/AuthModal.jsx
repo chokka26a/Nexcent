@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { AuthContext } from '../context/AuthContext';
+import { API_BASE_URL } from '../apiConfig'; // Import central API configuration
 
 export default function AuthModal({ isOpen, onClose, initialMode = 'login' }) {
   const [mode, setMode] = useState(initialMode);
@@ -22,14 +23,10 @@ export default function AuthModal({ isOpen, onClose, initialMode = 'login' }) {
     e.preventDefault();
     setError('');
 
-    // Automatically uses local host if running locally, or ngrok backend URL if running via ngrok
-    const BACKEND_URL = window.location.hostname === 'localhost'
-      ? 'http://localhost:5000'
-      : 'https://backend-yyyy.ngrok-free.app'; // Replace with your active backend ngrok URL
-
+    // Dynamic endpoint target using imported API_BASE_URL
     const endpoint = mode === 'signup' 
-      ? 'http://localhost:5000/api/auth/signup' 
-      : 'http://localhost:5000/api/auth/login';
+      ? `${API_BASE_URL}/api/auth/signup` 
+      : `${API_BASE_URL}/api/auth/login`;
 
     try {
       const response = await fetch(endpoint, {
@@ -41,6 +38,10 @@ export default function AuthModal({ isOpen, onClose, initialMode = 'login' }) {
       const data = await response.json();
 
       if (!response.ok) {
+        // Handle NoSQL threshold limit specifically
+        if (data.limitExceeded) {
+          throw new Error(data.message);
+        }
         throw new Error(data.message || 'Something went wrong');
       }
 
