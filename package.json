@@ -1,0 +1,9 @@
+{
+  "name": "nexcent-app",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "npm run build --prefix frontend",
+    "preview": "npm run preview --prefix frontend",
+    "start": "node backend/nosqlserver.js"
+  }
+}
