@@ -28,6 +28,13 @@
         "email": "test59@test.com",
         "password": "$2b$10$urVDbc15CATFP0SvGBjWQukoHK3/YktAAy4chP0P/L6CHiI5zn37i",
         "created_dt": "2026-08-22T06:06:54.302Z"
+      },
+      {
+        "id": 1787381388009,
+        "name": "new",
+        "email": "new@test.com",
+        "password": "$2b$10$X2XYk2OmBbPM0b1O3JJxgOcQrvikR9zLJPQ/Srqe3508zhgZX9WIu",
+        "created_dt": "2026-08-22T06:49:48.009Z"
       }
     ]
   }
