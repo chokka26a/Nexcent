@@ -111,8 +111,33 @@ app.post('/api/auth/login', async (req, res) => {
   }
 });
 
-app.get('/', (req, res) => {
+/* Deploy in a single hosting env */
+/* app.get('/', (req, res) => {
   res.send('Nexcent NoSQL (JSON) Backend API is running!');
+}); */
+
+
+
+/* // Serve static React files in production
+const frontendBuildPath = path.join(__dirname, '../frontend/dist'); // Adjust if dist is in same directory
+app.use(express.static(frontendBuildPath));
+
+// Catch-all handler to serve index.html for client-side routing
+app.get('{*path}', (req, res) => {
+  res.sendFile(path.join(frontendBuildPath, 'index.html'));
 });
 
-app.listen(PORT, () => console.log(`NoSQL Server running on port ${PORT}`));
+app.listen(PORT, () => console.log(`NoSQL Server running on port ${PORT}`)); */
+
+
+// 1. Point to the compiled React build folder
+const frontendBuildPath = path.join(__dirname, '../frontend/dist');
+app.use(express.static(frontendBuildPath));
+
+// 2. Express v5 catch-all handler for React Single-Page Application routes
+app.get('{*path}', (req, res) => {
+  res.sendFile(path.join(frontendBuildPath, 'index.html'));
+});
+
+// 3. Start Server
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
