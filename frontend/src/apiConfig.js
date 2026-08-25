@@ -10,7 +10,7 @@ export const API_BASE_URL = USE_NOSQL
   : 'http://localhost:5000'; // server.js (MySQL) */
 
 
-  const USE_NOSQL = false; 
+  const USE_NOSQL = true; 
 
 export const API_BASE_URL = window.location.hostname === 'localhost'
   ? (USE_NOSQL ? 'http://localhost:5001' : 'http://localhost:5000')
