@@ -3,7 +3,8 @@ import './App.css';
 
 // Import local Figma section assets
 import logoImg from './assets/Iconimg.png';
-import heroImg from './assets/HeroSection.png'
+import heroImg from './assets/HeroSection.png';
+import illustrationImg from './assets/Illustration.png';
 import clientsImg from './assets/Clients.png';
 import communityImg from './assets/Community.png';
 import achievementsImg from './assets/Achievements.png';
