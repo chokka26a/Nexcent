@@ -6,20 +6,19 @@
 
 html, body {
   width: 100%;
-  overflow-x: hidden; /* Removes horizontal scrollbars across all screen sizes */
+  overflow-x: hidden;
   font-family: 'Inter', sans-serif;
   color: #4D4D4D;
   background-color: #FFFFFF;
 }
 
-/* 1. Full-Width Container (Removes 1440px max-width boundary) */
 .landing-container {
   width: 100%;
   margin: 0;
   padding: 0;
 }
 
-/* 2. Responsive Edge-to-Edge Header */
+/* Header Navbar */
 .navbar {
   position: relative;
   z-index: 100;
@@ -27,7 +26,7 @@ html, body {
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  padding: 1.5rem 5vw; /* Converts fixed 120px padding to responsive viewport-width padding */
+  padding: 1.25rem 8vw;
   background-color: #F5F7FA;
 }
 
@@ -37,15 +36,14 @@ html, body {
   gap: 10px;
 }
 
-/* Add styling specifically for the logo text span */
 .logo span {
   font-size: 24px;
-  font-weight: 700; /* Makes Nexcent logo text bold */
+  font-weight: 700;
   color: #263238;
 }
 
 .logo-img {
-  height: 32px;
+  height: 30px;
   width: auto;
   object-fit: contain;
   display: block;
@@ -54,7 +52,7 @@ html, body {
 .nav-links span {
   margin: 0 1.2vw;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
   color: #18191F;
   cursor: pointer;
 }
@@ -78,17 +76,22 @@ html, body {
   background-color: #4CAF4F;
   color: #FFFFFF;
   border: none;
-  padding: 10px 20px;
+  padding: 12px 32px;
   border-radius: 4px;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 500;
   cursor: pointer !important;
+  transition: background-color 0.2s ease;
 }
 
-/* 3. Fluid Image Sections (Removes 1200px image limit) */
+.btn-primary:hover {
+  background-color: #388E3C;
+}
+
+/* Hero Section Layout */
 .section-container {
   width: 100%;
-  padding: 0; /* Ensures background fills entire screen without white side margins */
+  padding: 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -98,29 +101,110 @@ html, body {
   background-color: #F5F7FA;
 }
 
+.hero-section {
+  padding: 4rem 8vw 2.5rem 8vw;
+  flex-direction: column;
+}
+
+.hero-slider-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 1280px;
+}
+
+.hero-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 60px;
+  min-height: 360px;
+}
+
+.hero-text {
+  flex: 1.2;
+  min-width: 0;
+}
+
+/* H1 Headline Formatting */
+.hero-title {
+  font-size: clamp(2.5rem, 4.2vw, 3.75rem);
+  font-weight: 600;
+  line-height: 1.2;
+  color: #4D4D4D;
+  margin-bottom: 20px;
+  white-space: nowrap;
+}
+
+.hero-title .text-primary {
+  color: #4CAF4F;
+}
+
+.hero-subtitle {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #717171;
+  margin-bottom: 32px;
+}
+
+.hero-btn {
+  padding: 14px 36px;
+}
+
+/* Illustration Image */
+.hero-image-wrapper {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.illustration-img {
+  width: 100%;
+  max-width: 390px;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Carousel Dots Indicator */
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: 32px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: none;
+  background-color: #4CAF4F;
+  opacity: 0.3;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+}
+
+.dot.active {
+  opacity: 1;
+  background-color: #4CAF4F;
+  width: 10px;
+  height: 10px;
+}
+
 .full-width-img {
   width: 100%;
-  max-width: 100%; /* Allows image to stretch dynamically on 15", 20", or ultrawide screens */
+  max-width: 100%;
   height: auto;
   object-fit: cover;
   display: block;
 }
 
-/* 4. Bottom Call to Action */
-.footer-cta {
-  background-color: #F5F7FA;
-  text-align: center;
-  padding: 60px 20px;
-  width: 100%;
-}
-
-.footer-cta h2 {
-  font-size: 36px;
-  color: #263238;
-  margin-bottom: 30px;
-}
-
-/* 5. Auth Modal Styling */
+/* Modal Overlay Fix */
 div[class*="modal"], 
 div[class*="overlay"] {
   position: fixed !important;
@@ -135,8 +219,23 @@ div[class*="overlay"] {
   z-index: 99999 !important;
 }
 
-/* Responsive Media Queries */
+/* Responsive Handling */
+@media (max-width: 1024px) {
+  .hero-title {
+    white-space: normal;
+  }
+}
+
 @media (max-width: 768px) {
+  .hero-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-image-wrapper {
+    justify-content: center;
+  }
+
   .navbar {
     padding: 15px 20px;
   }
@@ -144,4 +243,49 @@ div[class*="overlay"] {
   .nav-links {
     display: none;
   }
+}
+
+/* FAQ Section Layout */
+.faq-hero-section {
+  padding: 4rem 8vw;
+  flex-direction: column;
+}
+
+.faq-wrapper {
+  max-width: 900px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.faq-list {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.faq-item {
+  background: #FFFFFF;
+  padding: 1.5rem 2rem;
+  border-radius: 8px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.05);
+  border: 1px solid #EEEEEE;
+}
+
+.faq-question {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #263238;
+  margin-bottom: 0.5rem;
+}
+
+.faq-answer {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #717171;
+}
+
+.active-link {
+  color: #4CAF4F !important;
+  font-weight: 700 !important;
 }
