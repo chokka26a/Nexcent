@@ -1,195 +1,44 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
+
 import './App.css';
 
-// Import local Figma section assets
-import logoImg from './assets/Iconimg.png';
-import illustrationImg from './assets/Illustration.png';
-import clientsImg from './assets/Clients.png';
-import communityImg from './assets/Community.png';
-import bodyImg from './assets/Body.png';
-import footerImg from './assets/Footer.png';
+import Header from './components/Header';
+import Footer from './components/Footer';
 
-// Import AuthContext hook
-import { useAuth } from './context/AuthContext'; 
-import AuthModal from './components/AuthModal';
+import Home from './pages/Home';
+import Product from './pages/Product';
+import Feature from './pages/Feature';
+import Service from './pages/Service';
+import FAQ from './pages/FAQ';
+import Testimonial from './pages/Testimonial';
 
-// Import FAQ component
-import FAQ from './FAQ';
+import AboutUs from './pages/AboutUs';
+import ContactUs from './pages/ContactUs';
+import PageUnderConstruction from './pages/PageUnderConstruction';
 
 export default function App() {
-  const { user, logout } = useAuth() || {}; 
-  const [authMode, setAuthMode] = useState(null); 
-  const [currentSlide, setCurrentSlide] = useState(0);
-  
-  // 1. Declare state to control active page view
-  const [currentPage, setCurrentPage] = useState('home');
+  return(
+    <BrowserRouter>
+     <Header />
+      <Routes>
 
-  // 2. Define handler function inside component scope
-  const handleFAQClick = () => {
-    const queryString = user?.id ? `?userId=${encodeURIComponent(user.id)}` : '';
-    window.history.pushState({}, '', `/faq.html${queryString}`);
-    setCurrentPage('faq');
-  };
+            {/* Default root page */}
+            <Route path="/" element={<Navigate to="/home" replace />} />
+            <Route path="/home" element={<Home />} />
 
-  const handleHomeClick = () => {
-    window.history.pushState({}, '', '/');
-    setCurrentPage('home');
-  };
+            <Route path="/service" element={<PageUnderConstruction pageTitle="Service" />} />
+            <Route path="/feature" element={<PageUnderConstruction pageTitle="Feature" />} />
+            <Route path="/product" element={<PageUnderConstruction pageTitle="Product" />} />
+            <Route to="/testimonial" element={<Testimonial />}/>
+            <Route path="/faq" element={<FAQ />} />
 
-  // Carousel slides data
-  const heroSlides = [
-    {
-      id: 0,
-      titleLine1: "Lessons and insights",
-      titleLine2: "from 8 years",
-      subtitle: "Where to grow your business as a photographer: site or social media?",
-      buttonText: "Register",
-      image: illustrationImg,
-      alt: "Development Illustration"
-    },
-    {
-      id: 1,
-      titleLine1: "Designed for teams",
-      titleLine2: "built for growth",
-      subtitle: "Scale your reach effortlessly with integrated digital assets and client tools.",
-      buttonText: "Register",
-      image: illustrationImg,
-      alt: "Team Growth Illustration"
-    },
-    {
-      id: 2,
-      titleLine1: "Streamline workflow",
-      titleLine2: "in one place",
-      subtitle: "Manage communities, clients, and technical integrations seamlessly.",
-      buttonText: "Register",
-      image: illustrationImg,
-      alt: "Workflow Illustration"
-    }
-  ];
-
-  // 3. Render FAQ page conditionally
-  if (currentPage === 'faq') {
-    return <FAQ onNavigateHome={handleHomeClick} />;
-  }
-
-  return (
-    <div className="landing-container">
-
-      {/* Header Navigation */}
-      <header className="navbar">
-        <div className="logo" onClick={handleHomeClick} style={{ cursor: 'pointer' }}>
-          <img 
-            src={logoImg} 
-            alt="Nexcent Logo" 
-            className="logo-img"
-            onError={(e) => console.error("Logo failed to load from path:", logoImg)}
-          />
-          <span>Nexcent</span>  
-        </div>
-
-        <nav className="nav-links">
-          <span onClick={handleHomeClick}>Home</span>
-          <span>Service</span>
-          <span>Feature</span>
-          <span>Product</span>
-          <span>Testimonial</span>
-          {/* Attach click handler cleanly */}
-          <span onClick={handleFAQClick}>FAQ</span>
-        </nav>
-        
-        <div className="nav-actions">
-          {user ? (
-            <div className="user-profile">
-              <span className="welcome-text">Hi, {user.name}</span>
-              <button className="btn-secondary" onClick={logout}>Logout</button>
-            </div>
-          ) : (
-            <>
-              <span 
-                className="link-text" 
-                onClick={() => setAuthMode('login')}
-              >
-                Login
-              </span>
-              <button 
-                className="btn-primary" 
-                onClick={() => setAuthMode('signup')}
-              >
-                Sign up
-              </button>
-            </>
-          )}
-        </div>
-      </header>
-
-      {/* Hero & Main Layout */}
-      <main>
-        <section className="section-container bg-light hero-section">
-          <div className="hero-slider-wrapper">
-            <div className="hero-content">
-              <div className="hero-text">
-                <h1 className="hero-title">
-                  {heroSlides[currentSlide].titleLine1}<br />
-                  <span className="text-primary">{heroSlides[currentSlide].titleLine2}</span>
-                </h1>
-                <p className="hero-subtitle">
-                  {heroSlides[currentSlide].subtitle}
-                </p>
-                <button 
-                  className="btn-primary hero-btn"
-                  onClick={() => setAuthMode('signup')}
-                >
-                  {heroSlides[currentSlide].buttonText}
-                </button>
-              </div>
-              <div className="hero-image-wrapper">
-                <img 
-                  src={heroSlides[currentSlide].image} 
-                  alt={heroSlides[currentSlide].alt} 
-                  className="illustration-img" 
-                />
-              </div>
-            </div>
-
-            <div className="carousel-dots">
-              {heroSlides.map((slide, index) => (
-                <button
-                  key={slide.id}
-                  className={`dot ${currentSlide === index ? 'active' : ''}`}
-                  onClick={() => setCurrentSlide(index)}
-                  aria-label={`Go to slide ${index + 1}`}
-                />
-              ))}
-            </div>
-          </div>
-        </section>  
-
-        <section className="section-container">
-          <img src={clientsImg} alt="Our Clients" className="full-width-img" />
-        </section>
-
-        <section className="section-container">
-          <img src={communityImg} alt="Manage Community" className="full-width-img" />
-        </section>
-
-        <section className="section-container">
-          <img src={bodyImg} alt="Main Body Layout" className="full-width-img" />
-        </section>
-
-        <section className="section-container">
-          <img src={footerImg} alt="Footer Layout" className="full-width-img" />
-        </section>
-      </main>
-    
-      {/* Auth Modal Overlay */}
-      {authMode && (
-        <AuthModal 
-          isOpen={Boolean(authMode)} 
-          initialMode={authMode} 
-          onClose={() => setAuthMode(null)}
-        />
-      )}
-
-    </div>
+            <Route path="/aboutus" element={<AboutUs />} />
+            <Route path="/contactus" element={<ContactUs />} />
+            
+      </Routes>
+     <Footer />
+   </BrowserRouter>
   );
+
 }

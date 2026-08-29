@@ -219,6 +219,29 @@ div[class*="overlay"] {
   z-index: 99999 !important;
 }
 
+
+/* Base navigation styles (Desktop / Default) */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 32px; /* Spacing between navigation links */
+}
+
+/* Remove underlines and style all links inside nav-links */
+.nav-links a {
+  text-decoration: none; /* Removes the underline */
+  color: #18191F;        /* Main text color */
+  font-size: 16px;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+/* Hover state */
+.nav-links a:hover {
+  color: #4CAF4F;        /* Active/hover accent color */
+}
+
+
 /* Responsive Handling */
 @media (max-width: 1024px) {
   .hero-title {

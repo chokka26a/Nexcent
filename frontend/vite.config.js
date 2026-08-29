@@ -7,6 +7,9 @@ export default defineConfig({
   server: {
     host: true, // Listens on all local IP addresses (0.0.0.0)
     port: 5173,
-    allowedHosts: true // Allows ngrok domain names to bypass host checks
+    sourcemapIgnoreList: false // Prevents Vite from masking sourcemaps from VS Code
+  },
+  build: {
+    sourcemap: true // Generates precise source maps for JSX
   }
 })

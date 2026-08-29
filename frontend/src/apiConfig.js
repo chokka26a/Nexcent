@@ -4,6 +4,9 @@
 
 /* Chokka decided to use single server for demo*/
 /* const USE_NOSQL = true; 
+// apiConfig is to connect db
+// nosql port 5001
+// mysql port 5000
 
 export const API_BASE_URL = USE_NOSQL 
   ? 'http://localhost:5001'  // nosqlserver.js

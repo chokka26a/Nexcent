@@ -1,8 +1,8 @@
 import React from 'react';
-import './App.css';
-import logoImg from './assets/Iconimg.png';
-import footerImg from './assets/Footer.png';
-import { useAuth } from './context/AuthContext';
+import '../App.css';
+import logoImg from '../assets/Iconimg.png';
+import footerImg from '../assets/Footer.png';
+import { useAuth } from '../context/AuthContext';
 
 export default function FAQ({ onNavigateHome }) {
   const { user, logout } = useAuth() || {};
@@ -33,36 +33,6 @@ export default function FAQ({ onNavigateHome }) {
 
   return (
     <div className="landing-container">
-      {/* 1. Navbar Layout (Matching Home Page) */}
-      <header className="navbar">
-        <div className="logo" onClick={onNavigateHome} style={{ cursor: 'pointer' }}>
-          <img src={logoImg} alt="Nexcent Logo" className="logo-img" />
-          <span>Nexcent</span>
-        </div>
-
-        <nav className="nav-links">
-          <span onClick={onNavigateHome}>Home</span>
-          <span onClick={onNavigateHome}>Service</span>
-          <span onClick={onNavigateHome}>Feature</span>
-          <span onClick={onNavigateHome}>Product</span>
-          <span onClick={onNavigateHome}>Testimonial</span>
-          <span className="active-link">FAQ</span>
-        </nav>
-
-        <div className="nav-actions">
-          {activeUserName ? (
-            <div className="user-profile">
-              <span className="welcome-text">Hi, {activeUserName}</span>
-              {logout && <button className="btn-secondary" onClick={logout}>Logout</button>}
-            </div>
-          ) : (
-            <span className="link-text" onClick={onNavigateHome}>
-              Sign In / Register
-            </span>
-          )}
-        </div>
-      </header>
-
       {/* 2. Main FAQ Content */}
       <main>
         <section className="section-container bg-light faq-hero-section">

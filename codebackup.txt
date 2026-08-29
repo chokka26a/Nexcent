@@ -1,0 +1,12 @@
+
+
+From App.jsx
+import Home  from './pages/Home';
+
+  <Home /> 
+      {/* Routes */}
+      {/* 
+      <Routes>
+        <Route path="/home" element={<Home />} />
+      </Routes>
+      */}

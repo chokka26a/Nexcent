@@ -1,0 +1,222 @@
+.footer-container {
+  background-color: #263238;
+  color: #ffffff;
+  padding: 64px 80px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+/* Brand Section */
+.footer-brand-section {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  max-width: 350px;
+  width: 100%;
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer-logo img {
+  height: 30px;
+  width: auto;
+}
+
+.footer-logo-text {
+  font-size: 28px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.footer-copyright {
+  font-size: 14px;
+  color: #f5f7fa;
+  line-height: 1.6;
+}
+
+.footer-copyright p {
+  margin: 0;
+}
+
+.footer-social-icons {
+  display: flex;
+  gap: 16px;
+}
+
+.social-icon-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #37474f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.social-icon-btn:hover {
+  background-color: #455a64;
+}
+
+/* Links Sections */
+.footer-links-group {
+  display: flex;
+  gap: 80px;
+  flex-wrap: wrap;
+}
+
+.footer-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-column h4 {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0 0 24px 0;
+  color: #ffffff;
+}
+
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer-column a {
+  color: #f5f7fa;
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.2s ease;
+}
+
+.footer-column a:hover {
+  color: #4caf50;
+}
+
+/* Newsletter Section */
+.footer-newsletter-section {
+  display: flex;
+  flex-direction: column;
+  max-width: 255px;
+  width: 100%;
+}
+
+.footer-newsletter-section h4 {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0 0 24px 0;
+  color: #ffffff;
+}
+
+.newsletter-input-container {
+  position: relative;
+  width: 100%;
+}
+
+.newsletter-input {
+  width: 100%;
+  padding: 10px 40px 10px 12px;
+  background-color: #515b60;
+  border: none;
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 14px;
+  box-sizing: border-box;
+  outline: none;
+}
+
+.newsletter-input::placeholder {
+  color: #d9dbe9;
+}
+
+.newsletter-submit-btn {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ==========================================
+   Responsive Breakpoints
+   ========================================== */
+
+/* Tablet & Smaller Devices (Under 992px) */
+@media screen and (max-width: 992px) {
+  .footer-container {
+    padding: 48px 40px;
+  }
+
+  .footer-links-group {
+    gap: 48px;
+  }
+}
+
+/* Mobile Devices (Under 768px) */
+@media screen and (max-width: 768px) {
+  .footer-container {
+    padding: 40px 24px;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    gap: 36px;
+  }
+
+  .footer-brand-section {
+    max-width: 100%;
+    gap: 20px;
+  }
+
+  .footer-links-group {
+    width: 100%;
+    justify-content: space-between;
+    gap: 32px;
+  }
+
+  .footer-newsletter-section {
+    max-width: 100%;
+  }
+}
+
+/* Small Mobile Screens (Under 480px) */
+@media screen and (max-width: 480px) {
+  .footer-links-group {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .footer-newsletter-section h4,
+  .footer-column h4 {
+    margin-bottom: 16px;
+  }
+}
