@@ -2,16 +2,12 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Debug Frontend (Chrome)",
       "type": "chrome",
       "request": "launch",
+      "name": "Launch Chrome against localhost",
       "url": "http://localhost:5173",
-      "webRoot": "${workspaceFolder}/frontend",
-      "sourceMapPathOverrides": {
-        "/@fs/*": "*",
-        "/src/*": "${workspaceFolder}/frontend/src/*",
-        "/*": "${workspaceFolder}/frontend/*"
-      }
+      "webRoot": "${workspaceFolder}/src",
+      "sourceMaps": true
     }
   ]
 }
