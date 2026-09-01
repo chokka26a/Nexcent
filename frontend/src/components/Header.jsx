@@ -5,7 +5,7 @@ import '../App.css';
 import logoImg from '../assets/Iconimg.png';
 
 // Import AuthContext hook
-import AuthModal from '../components/AuthModal';
+import AuthModal from './AuthModal';
 import { useAuth } from '../context/AuthContext';
 import { Link } from 'react-router-dom';
 

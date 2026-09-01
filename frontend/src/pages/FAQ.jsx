@@ -7,6 +7,8 @@ import { useAuth } from '../context/AuthContext';
 export default function FAQ({ onNavigateHome }) {
   const { user, logout } = useAuth() || {};
 
+  console.log('FAQ page')
+
   // Extract userId/name from query string if available
   const queryParams = new URLSearchParams(window.location.search);
   const activeUserId = queryParams.get('userId') || user?.id;

@@ -1,26 +1,64 @@
+import React, { useState, useContext, useEffect } from 'react';
+import { AuthContext } from '../context/AuthContext';
+import { API_BASE_URL } from '../apiConfig'; // Import central API configuration
 
-import React from 'react';
-import useAuthViewModel  from '../hooks/useAuthViewModel';
 
-export default function AuthModal({ isOpen, onClose, initialMode }) {
-  // Destructure the properties returned by the hook
+// Chokka added - Virtual DOM is created
+//React runs Authmodal()'s return statement. 
+// It constructs a fresh JavaScript object tree (the New Virtual DOM) representing what Authmodal's UI 
+// should look like with the new JSON data.
 
-  
-      const { 
-      mode, 
-      setMode, 
-      formData, 
-      error, 
-      handleChange, 
-      handleSubmit 
-    } = useAuthViewModel({ isOpen, onClose, initialMode });
-  
- 
+export default function AuthModal({ isOpen, onClose, initialMode = 'login' }) {
+  const [mode, setMode] = useState(initialMode);
+  const [formData, setFormData] = useState({ name: '', email: '', password: '' });
+  const [error, setError] = useState('');
+  const { login } = useContext(AuthContext);
+
+  // Sync mode state when initialMode prop changes
+  useEffect(() => {
+    setMode(initialMode);
+  }, [initialMode]);
 
   if (!isOpen) return null;
 
-  return ( 
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError('');
+
+    // Dynamic endpoint target using imported API_BASE_URL
+    const endpoint = mode === 'signup' 
+      ? `${API_BASE_URL}/api/auth/signup` 
+      : `${API_BASE_URL}/api/auth/login`;
+
+    try {
+      const response = await fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        // Handle NoSQL threshold limit specifically
+        if (data.limitExceeded) {
+          throw new Error(data.message);
+        }
+        throw new Error(data.message || 'Something went wrong');
+      }
+
+      login(data.user, data.token);
+      onClose();
+    } catch (err) {
+      setError(err.message);
+    }
+  };
+
+  return (
     <div style={{
       position: 'fixed', top: 0, left: 0, right: 0, bottom: 0,
       backgroundColor: 'rgba(0,0,0,0.5)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1000
@@ -59,9 +97,5 @@ export default function AuthModal({ isOpen, onClose, initialMode }) {
         <button onClick={onClose} style={{ marginTop: '12px', width: '100%', background: 'transparent', border: 'none', cursor: 'pointer' }}>Close</button>
       </div>
     </div>
-
   );
 }
- 
- 
- 

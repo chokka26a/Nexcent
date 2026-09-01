@@ -12,7 +12,7 @@ import ContactUs from '../pages/ContactUs';
 
 
 // Import AuthContext hook
-import AuthModal from '../components/AuthModal';
+import AuthModal from './AuthModal';
 import { useAuth } from '../context/AuthContext';
 import { Link, Routes, Route } from 'react-router-dom';
 

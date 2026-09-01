@@ -9,7 +9,7 @@ export default function Testimonial() {
     },
     {
       question: "Is my personal data secure when using third-party services?",
-      answer: "Yes. All communications with third-party web services are encrypted using TLS/SSL, adhering to strict data security standards."
+      answer: "Yes. All communicat ions with third-party web services are encrypted using TLS/SSL, adhering to strict data security standards."
     },
     {
       question: "Can I access the FAQ without an active account?",

@@ -18,3 +18,4 @@ export const API_BASE_URL = USE_NOSQL
 export const API_BASE_URL = window.location.hostname === 'localhost'
   ? (USE_NOSQL ? 'http://localhost:5001' : 'http://localhost:5000')
   : ''; // Empty string uses relative path (e.g. /api/auth/signup on same domain)
+
